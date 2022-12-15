@@ -1,0 +1,7 @@
+argo-cd:
+  server:
+    config:
+      repositories: |
+        - type: helm
+          name: argo-cd
+          url: https://argoproj.github.io/argo-helm
