@@ -2,15 +2,15 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: argo-cd
-  namespace: default
+  namespace: argocd
 spec:
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: argocd
   project: default
   source:
     path: charts/argo-cd
-    repoURL: https://github.com/Brutus5000/gitops-stack.git
+    repoURL: https://github.com/Brutus5000/gitops-stack
     targetRevision: HEAD
   syncPolicy:
     automated:

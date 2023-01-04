@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: faforever
-  namespace: default
+  namespace: argocd
 spec:
   destination:
     server: https://kubernetes.default.svc
@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     path: apps/
-    repoURL: https://github.com/Brutus5000/gitops-stack.git
+    repoURL: https://github.com/Brutus5000/gitops-stack
     targetRevision: HEAD
   syncPolicy:
     automated:
