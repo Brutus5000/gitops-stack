@@ -1,0 +1,6 @@
+zfs-localpv:
+  # On NixOS, we need to declare the ZFS binary path explicitly
+  zfs:
+    bin: /run/current-system/sw/bin/zfs
+  zfsNode:
+    matchLabels: "zfs-storage"
