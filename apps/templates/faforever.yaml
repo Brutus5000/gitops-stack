@@ -12,6 +12,10 @@ spec:
     path: apps/
     repoURL: https://github.com/Brutus5000/gitops-stack
     targetRevision: HEAD
+    helm:
+      parameters:
+        - name: baseDomain
+          value: {{ .Values.baseDomain }}
   syncPolicy:
     automated:
       prune: true
