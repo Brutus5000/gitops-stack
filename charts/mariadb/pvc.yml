@@ -6,7 +6,6 @@ metadata:
     app: mariadb
 spec:
   storageClassName: zfs-localpv
-  volumeName: mariadb-pv
   accessModes:
     - ReadWriteOnce
   resources:
