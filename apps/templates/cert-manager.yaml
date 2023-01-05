@@ -12,6 +12,14 @@ spec:
     path: charts/cert-manager
     repoURL: https://github.com/Brutus5000/gitops-stack.git
     targetRevision: HEAD
+    helm:
+      parameters:
+        - name: baseDomain
+          value: {{ .Values.baseDomain }}
+        - name: adminEmail
+          value: {{ .Values.adminEmail }}
+        - name: letsEncryptProduction
+          value: {{ .Values.letsEncryptProduction | quote}}
   syncPolicy:
     automated:
       prune: true

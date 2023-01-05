@@ -16,6 +16,10 @@ spec:
       parameters:
         - name: baseDomain
           value: {{ .Values.baseDomain }}
+        - name: adminEmail
+          value: {{ .Values.adminEmail }}
+        - name: letsEncryptProduction
+          value: {{ .Values.letsEncryptProduction | quote}}
   syncPolicy:
     automated:
       prune: true
