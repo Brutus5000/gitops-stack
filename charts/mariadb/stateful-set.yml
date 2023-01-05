@@ -21,9 +21,12 @@ spec:
       - image: mariadb:10.6
         imagePullPolicy: IfNotPresent
         name: mariadb
-        envFrom:
-          - secretRef:
-              name: mariadb
+        env:
+          - name: MARIADB_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mariadb
+                key: ROOT_PASSWORD
         ports:
         - containerPort: 3306
           protocol: TCP
