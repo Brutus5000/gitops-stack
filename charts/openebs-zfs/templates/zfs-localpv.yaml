@@ -11,6 +11,7 @@ parameters:
   fstype: zfs
   poolname: storage/faf-k8s
   recordsize: 4k
+  shared: "yes"
 provisioner: zfs.csi.openebs.io
 reclaimPolicy: Retain
 volumeBindingMode: Immediate
