@@ -12,7 +12,3 @@ spec:
     path: charts/mariadb
     repoURL: https://github.com/Brutus5000/gitops-stack
     targetRevision: HEAD
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true

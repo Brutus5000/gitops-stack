@@ -21,8 +21,5 @@ spec:
         - name: letsEncryptProduction
           value: {{ .Values.letsEncryptProduction | quote}}
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
     syncOptions:
       - CreateNamespace=true

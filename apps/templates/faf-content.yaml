@@ -16,7 +16,3 @@ spec:
       parameters:
         - name: baseDomain
           value: {{ .Values.baseDomain }}
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true

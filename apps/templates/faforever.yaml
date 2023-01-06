@@ -20,7 +20,3 @@ spec:
           value: {{ .Values.adminEmail }}
         - name: letsEncryptProduction
           value: {{ .Values.letsEncryptProduction | quote}}
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
