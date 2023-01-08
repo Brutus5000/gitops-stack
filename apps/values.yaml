@@ -1,3 +1,7 @@
 baseDomain: "faforever.com"
 adminEmail: "admin@faforever.com"
 letsEncryptProduction: true
+nodebb:
+  mongodb:
+    database: nodebb
+    username: nodebb

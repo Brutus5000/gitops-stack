@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nodebb
+  name: nodebb
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: nodebb
+  template:
+    metadata:
+      labels:
+        app: nodebb
+    spec:
+      initContainers:
+        # NodeBB needs a writable config.json therefore we copy it from secret into an empty directory
+        - name: setup
+          image: busybox:stable
+          imagePullPolicy: Always
+          command: ['sh', '-c', "/config/build-config.sh"]
+          envFrom:
+            - configMapRef:
+                name: nodebb
+            - secretRef:
+                name: nodebb
+          volumeMounts:
+            - name: pod-config
+              mountPath: /pod
+            - name: config-template
+              mountPath: /config/config.json.template
+              subPath: config.json.template
+            - name: config-script
+              mountPath: /config/build-config.sh
+              subPath: build-config.sh
+            - name: data
+              mountPath: /usr/src/app/public/uploads
+      containers:
+        - image: nodebb/docker:2.8.1
+          imagePullPolicy: IfNotPresent
+          name: nodebb
+          ports:
+            - containerPort: 4567
+              protocol: TCP
+          volumeMounts:
+            - name: data
+              mountPath: /usr/src/app/public/uploads
+            - name: pod-config
+              mountPath: /usr/src/app/config.json
+              subPath: config.json
+      restartPolicy: Always
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: nodebb-pvc
+        - name: pod-config
+          emptyDir: {}
+        - name: config-script
+          configMap:
+            name: nodebb
+            defaultMode: 077
+        - name: config-template
+          configMap:
+            name: nodebb

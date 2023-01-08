@@ -1,0 +1,5 @@
+# inherited from global
+baseDomain: faforever.com
+mongodb:
+  database: nodebb
+  username: nodebb

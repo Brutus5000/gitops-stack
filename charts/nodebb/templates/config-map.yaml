@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nodebb
+  labels:
+    app: nodebb
+data:
+  # A template of the config.json with placeholders of variables that will be populated from configmap and secret
+  config.json.template: |
+    {
+      "url": "https://forum.{{ .Values.baseDomain }}",
+      "port": 4567,
+      "secret": "#COOKIE_SECRET#",
+      "database": "mongo",
+      "mongo": {
+        "host": "mongodb",
+        "port": "27017",
+        "username": "{{ .Values.mongodb.username }}",
+        "password": "#MONGO_PASSWORD#",
+        "database": "{{ .Values.mongodb.database }}"
+      },
+      "plugins": {
+        "active": [
+          "nodebb-plugin-dbsearch",
+          "nodebb-plugin-sso-oauth-faforever",
+          "nodebb-plugin-write-api"
+        ]
+      },
+      "oauth": {
+        "authorizationURL": "https://hydra.{{ .Values.baseDomain }}/oauth2/auth",
+        "tokenURL": "https://hydra.{{ .Values.baseDomain }}/oauth2/token",
+        "fafApiProfileURL": "https://api.{{ .Values.baseDomain }}/me",
+        "id": "faf-forum",
+        "secret": "#OAUTH_SECRET#",
+        "scope": "public_profile"
+      }
+    }
+  # Configuration shell scripts
+  # - prepares the only mounted data folder by setting permissions to the node user
+  # - install npm modules for required plugins
+  # - writes a config.json with oauth section based on variables and secrets
+  build-config.sh: |
+    #!/bin/sh
+    chown 1000:1000 /usr/src/app/public/uploads
+    cp /config/config.json.template /pod/config.json
+    chown 1000:1000 /pod/config.json
+    sed -i "s/#COOKIE_SECRET#/${COOKIE_SECRET}/g" /pod/config.json
+    sed -i "s/#MONGO_PASSWORD#/${MONGO_PASSWORD}/g" /pod/config.json
+    sed -i "s/#OAUTH_SECRET#/${OAUTH_SECRET}/g" /pod/config.json
