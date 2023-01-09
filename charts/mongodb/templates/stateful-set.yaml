@@ -24,7 +24,9 @@ spec:
         envFrom:
           - secretRef:
               name: mongodb
-        image: mongo:4.2.17
+        image: mongo:6.0.3-focal
+        args:
+          - "--bind_ip_all"
         imagePullPolicy: IfNotPresent
         name: mongodb
         ports:

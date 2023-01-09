@@ -1,0 +1,6 @@
+# inherited from global
+admin:
+  username: root
+nodebb:
+  database: nodebb
+  username: nodebb

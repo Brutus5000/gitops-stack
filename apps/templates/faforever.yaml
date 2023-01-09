@@ -20,3 +20,9 @@ spec:
           value: {{ .Values.adminEmail }}
         - name: letsEncryptProduction
           value: {{ .Values.letsEncryptProduction | quote}}
+        - name: letsEncryptProduction
+          value: {{ .Values.letsEncryptProduction | quote}}
+        - name: nodebb.mongodb.database
+          value: {{ .Values.nodebb.mongodb.database }}
+        - name: nodebb.mongodb.username
+          value: {{ .Values.nodebb.mongodb.username }}

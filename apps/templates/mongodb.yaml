@@ -12,3 +12,9 @@ spec:
     path: charts/mongodb
     repoURL: https://github.com/Brutus5000/gitops-stack
     targetRevision: HEAD
+    helm:
+      parameters:
+        - name: nodebb.database
+          value: {{ .Values.nodebb.mongodb.database }}
+        - name: nodebb.username
+          value: {{ .Values.nodebb.mongodb.username }}
