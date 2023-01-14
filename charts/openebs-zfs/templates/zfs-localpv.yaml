@@ -9,7 +9,7 @@ parameters:
   compression: 'off'
   dedup: 'off'
   fstype: zfs
-  poolname: storage/faf-k8s
+  poolname: {{ .Values.poolName }}
   recordsize: 4k
   shared: "yes"
 provisioner: zfs.csi.openebs.io

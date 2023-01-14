@@ -1,6 +1,12 @@
+poolName: storage/faf-k8s
+nodeId: nixos-k3s
 zfs-localpv:
   # On NixOS, we need to declare the ZFS binary path explicitly
   zfs:
     bin: /run/current-system/sw/bin/zfs
   zfsNode:
     matchLabels: "zfs-storage"
+managedStorages:
+  - name: test
+    size: 7Gi
+    accessModes: ReadWriteOnce
