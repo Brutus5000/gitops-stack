@@ -7,6 +7,15 @@ zfs-localpv:
   zfsNode:
     matchLabels: "zfs-storage"
 managedStorages:
-  - name: test
-    size: 7Gi
+  - name: mariadb
+    size: 20Gi
     accessModes: ReadWriteOnce
+  - name: mongodb
+    size: 20Gi
+    accessModes: ReadWriteOnce
+  - name: faf-content
+    size: 10Gi
+    accessModes: ReadWriteMany
+  - name: nodebb
+    size: 10Gi
+    accessModes: ReadWriteMany

@@ -8,10 +8,6 @@ spec:
     - {{ .accessModes }}
   capacity:
     storage: {{ .size }} # size of the volume
-  claimRef:
-    apiVersion: v1
-    kind: PersistentVolumeClaim
-    name: {{ .name }}-pvc # name of pvc which can claim this PV
   csi:
     driver: zfs.csi.openebs.io
     fsType: zfs
@@ -54,10 +50,13 @@ metadata:
   namespace: default
 spec:
   storageClassName: zfs-localpv
+  volumeName: {{ .name }}
   accessModes:
     - {{ .accessModes }}
   resources:
     requests:
       storage: {{ .size }}
+
+---
 
 {{- end }}
