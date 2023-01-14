@@ -1,7 +1,24 @@
+# The only purpose of this ConfigMap is to provide the setup script
+# Unfortunately we can't clean it up as part of the install hook
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongodb-postinstall-configmap
+  labels:
+    app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
+    app.kubernetes.io/instance: {{ .Release.Name | quote }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion }}
+    helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+data:
+  create-db-and-users.sh: |-
+{{ .Files.Get "scripts/create-db-and-users.sh" | indent 4}}
+
+---
+
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: "mongodb-post-install"
+  name: mongodb-post-install
   labels:
     app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
     app.kubernetes.io/instance: {{ .Release.Name | quote }}
@@ -33,5 +50,5 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            name: nodebb-postinstall-configmap
+            name: mongodb-postinstall-configmap
             defaultMode: 0777
