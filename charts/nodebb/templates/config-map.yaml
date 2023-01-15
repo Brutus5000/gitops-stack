@@ -5,6 +5,9 @@ metadata:
   labels:
     app: nodebb
 data:
+  NODEBB_ADMIN_USERNAME: faforever
+  NODEBB_ADMIN_PASSWORD: BananaI5ForTheW34K
+  NODEBB_ADMIN_EMAIL: admin@faforever.com
   # A template of the config.json with placeholders of variables that will be populated from configmap and secret
   config.json.template: |
     {
@@ -23,7 +26,9 @@ data:
         "active": [
           "nodebb-plugin-dbsearch",
           "nodebb-plugin-sso-oauth-faforever",
-          "nodebb-plugin-write-api"
+          "nodebb-plugin-write-api",
+          "nodebb-theme-persona",
+          "nodebb-theme-slick"
         ]
       },
       "oauth": {

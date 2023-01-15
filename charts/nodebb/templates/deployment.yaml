@@ -44,9 +44,13 @@ spec:
             - name: data
               mountPath: /usr/src/app/public/uploads
       containers:
-        - image: nodebb/docker:2.8.1
+        - image: nodebb/docker:2.8.10
+          # command: ['/bin/sh', '-c', 'echo Started && sleep 1000000']
           imagePullPolicy: IfNotPresent
           name: nodebb
+          envFrom:
+            - configMapRef:
+                name: nodebb
           ports:
             - containerPort: 4567
               protocol: TCP
