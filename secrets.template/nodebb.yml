@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: nodebb
+  labels:
+    app: nodebb
+stringData:
+  COOKIE_SECRET: banana
+  OAUTH_SECRET: banana
+type: Opaque

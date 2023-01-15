@@ -21,6 +21,12 @@ spec:
           image: busybox:stable
           imagePullPolicy: Always
           command: ['sh', '-c', "/config/build-config.sh"]
+          env:
+            - name: MONGO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb
+                  key: NODEBB_PASSWORD
           envFrom:
             - configMapRef:
                 name: nodebb
