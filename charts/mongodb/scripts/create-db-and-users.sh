@@ -22,7 +22,11 @@ user_exists=$(mongo -eval "db.getUsers().users.some (user => user.user == 'nodeb
 
 # If the user does not exist, add it and grant it permissions to the database
 if [ "$user_exists" = "false" ]; then
-    mongo --eval "\"db.createUser({ user: '${NODEBB_USERNAME}', pwd: '${NODEBB_PASSWORD}', roles: [{ role: 'readWrite', db: '${NODEBB_DATABASE}' }] })\"" admin
+    mongo admin <<MONGODB_SCRIPT
+  use ${NODEBB_DATABASE};
+  db.createUser( { user: "${NODEBB_USERNAME}", pwd: "${NODEBB_PASSWORD}", roles: [ "readWrite" ] } );
+  db.grantRolesToUser("${NODEBB_USERNAME}",[{ role: "clusterMonitor", db: "admin" }]);
+MONGODB_SCRIPT
     echo "User '${NODEBB_USERNAME}' has been added to database '${NODEBB_DATABASE}' with read-write permissions."
 else
     echo "User '${NODEBB_USERNAME}' already exists in database '${NODEBB_DATABASE}'."
