@@ -47,6 +47,23 @@ spec:
           volumeMounts:
             - name: config-volume
               mountPath: /opt/scripts
+          env:
+            - name: MONGODB_ROOT_USER
+              value: {{ .Values.admin.username }}
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb
+                  key: MONGO_INITDB_ROOT_PASSWORD
+            - name: NODEBB_DATABASE
+              value: {{ .Values.nodebb.database }}
+            - name: NODEBB_USERNAME
+              value: {{ .Values.nodebb.database }}
+            - name: NODEBB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb
+                  key: NODEBB_PASSWORD
       volumes:
         - name: config-volume
           configMap:
