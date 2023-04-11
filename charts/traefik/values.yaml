@@ -22,6 +22,10 @@ traefik:
   metrics:
     prometheus: null
 
+  # HostNetwork
+  service:
+    enabled: false
+
   kubernetes:
     ingressEndpoint:
       useDefaultPublishedService: true
