@@ -1,4 +1,16 @@
 traefik:
+  hostNetwork: true
+  dnsPolicy: ClusterFirstWithHostNet
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                  - traefik
+          topologyKey: kubernetes.io/hostname
   ports:
     web:
       redirectTo: websecure
