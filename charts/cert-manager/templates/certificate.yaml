@@ -9,7 +9,7 @@ spec:
   dnsNames:
     - {{ .Values.baseDomain }}
     - content.{{ .Values.baseDomain }}
-    -
+    - forum.{{ .Values.baseDomain }}
   issuerRef:
     name: letsencrypt
     kind: ClusterIssuer
