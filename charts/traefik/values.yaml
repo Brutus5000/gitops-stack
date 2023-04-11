@@ -12,6 +12,10 @@ traefik:
                   - traefik
           topologyKey: kubernetes.io/hostname
   ports:
+    metrics:
+      # When using hostNetwork, use another port to avoid conflict with node exporter:
+      # https://github.com/prometheus/prometheus/wiki/Default-port-allocations
+      port: 9101
     web:
       redirectTo: websecure
 
