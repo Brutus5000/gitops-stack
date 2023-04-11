@@ -1,0 +1,12 @@
+traefik:
+  ports:
+    web:
+      redirectTo: websecure
+
+  kubernetes:
+    ingressEndpoint:
+      useDefaultPublishedService: true
+  providers:
+    kubernetesIngress:
+      publishedService:
+        enabled: true

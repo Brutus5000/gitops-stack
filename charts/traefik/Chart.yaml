@@ -1,0 +1,8 @@
+apiVersion: v2
+name: traefik
+version: 1.0.0
+dependencies:
+  - name: traefik
+    # Get the current versions at https://traefik.github.io/charts/index.yaml
+    version: 22.1.0
+    repository: https://traefik.github.io/charts
