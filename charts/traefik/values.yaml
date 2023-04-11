@@ -15,6 +15,9 @@ traefik:
     web:
       redirectTo: websecure
 
+  metrics:
+    prometheus: null
+
   kubernetes:
     ingressEndpoint:
       useDefaultPublishedService: true
