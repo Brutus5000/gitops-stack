@@ -33,3 +33,16 @@ traefik:
     kubernetesIngress:
       publishedService:
         enabled: true
+
+  deployment:
+    additionalVolumes:
+     - name: dockersocket
+       hostPath:
+          path: /var/run/docker.sock
+          type: FileOrCreate
+  additionalVolumeMounts:
+    - name: dockersocket
+      mountPath: /var/run/docker.sock    # For instance when using a logshipper for access logs
+
+  additionalArguments:
+    - "--providers.docker=true"
