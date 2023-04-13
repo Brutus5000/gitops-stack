@@ -44,7 +44,7 @@ spec:
             - name: data
               mountPath: /usr/src/app/public/uploads
       containers:
-        - image: nodebb/docker:2.8.10
+        - image: ghcr.io/nodebb/nodebb:2.8.11
           # command: ['/bin/sh', '-c', 'echo Started && sleep 1000000']
           imagePullPolicy: IfNotPresent
           name: nodebb
