@@ -24,11 +24,17 @@ data:
       },
       "plugins": {
         "active": [
-          "nodebb-plugin-dbsearch",
-          "nodebb-plugin-sso-oauth-faforever",
-          "nodebb-plugin-write-api",
           "nodebb-theme-persona",
-          "nodebb-theme-slick"
+          "nodebb-theme-slick",
+          "nodebb-widget-essentials",
+          "nodebb-plugin-composer-default",
+          "nodebb-plugin-dbsearch",
+          "nodebb-plugin-emoji",
+          "nodebb-plugin-emoji-android",
+          "nodebb-plugin-markdown",
+          "nodebb-plugin-mentions",
+          "nodebb-plugin-sso-oauth-faforever",
+          "nodebb-plugin-write-api"
         ]
       },
       "oauth": {
