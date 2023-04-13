@@ -11,7 +11,5 @@ spec:
       services:
         - name: nodebb
           port: 4567
-      middlewares:
-        - name: replay-redirect
   tls:
     secretName: {{ .Values.baseDomain }}
