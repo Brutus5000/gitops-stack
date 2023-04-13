@@ -11,8 +11,7 @@ data:
   # A template of the config.json with placeholders of variables that will be populated from configmap and secret
   config.json.template: |
     {
-      "url": "http://localhost:4567",
-      "url2": "https://forum.{{ .Values.baseDomain }}",
+      "url": "https://forum.{{ .Values.baseDomain }}",
       "port": 4567,
       "secret": "#COOKIE_SECRET#",
       "database": "mongo",
