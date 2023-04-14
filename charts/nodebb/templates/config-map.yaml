@@ -8,6 +8,7 @@ data:
   NODEBB_ADMIN_USERNAME: faforever
   NODEBB_ADMIN_PASSWORD: BananaI5ForTheW34K
   NODEBB_ADMIN_EMAIL: admin@faforever.com
+  SETUP: "true"
   # A template of the config.json with placeholders of variables that will be populated from configmap and secret
   config.json.template: |
     {
